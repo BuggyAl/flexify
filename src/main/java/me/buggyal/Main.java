@@ -4,12 +4,16 @@ import org.json.JSONArray;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
+
+    public static JSONArray exerciseArray;
 
     public static void main(String[] args) {
         try {
@@ -17,13 +21,39 @@ public class Main {
         } catch (URISyntaxException | IOException e) {
             throw new RuntimeException(e);
         }
+
+        List<String> muscleList = new ArrayList<>();
+        for (int i = 0; i < exerciseArray.length(); i++) {
+            JSONArray primary = exerciseArray.getJSONObject(i).getJSONArray("primaryMuscles");
+            for (int j = 0; j < primary.length(); j++) {
+                String muscle = primary.getString(j);
+                if (!muscleList.contains(muscle)) {
+                    muscleList.add(muscle);
+                }
+            }
+            JSONArray secondary = exerciseArray.getJSONObject(i).getJSONArray("secondaryMuscles");
+            for (int j = 0; j < secondary.length(); j++) {
+                String muscle = secondary.getString(j);
+                if (!muscleList.contains(muscle)) {
+                    muscleList.add(muscle);
+                }
+            }
+        }
+
+        System.out.println(muscleList);
+
+        WorkoutApp workoutApp = new WorkoutApp();
+        workoutApp.open();
+
     }
 
     public static void parseExercises() throws URISyntaxException, IOException {
-        Path path = Paths.get(Main.class.getResource("/exercises.json").toURI());
-        String jsonContent = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+        URL url = Main.class.getResource("/exercises.json");
+        if (url == null) throw new RuntimeException("Could not find exercises.json");
+        Path path = Paths.get(url.toURI());
+        String jsonContent = Files.readString(path);
         JSONArray exerciseArray = new JSONArray(jsonContent);
-        System.out.println(exerciseArray.toString(2));
+        Main.exerciseArray = exerciseArray;
     }
 
 }
