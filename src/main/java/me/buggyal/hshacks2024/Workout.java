@@ -33,11 +33,9 @@ public class Workout {
     }
 
     public List<WorkoutExercise> generateWorkout() {
-        System.out.println("Generating workout for " + workoutDifficulty.name() + " " + workoutType.name() + " " + workoutTarget.name());
         // do the magic
         Random random = new Random();
         JSONArray exerciseArray = Main.exerciseArray;
-        System.out.println(exerciseArray.length());
         List<WorkoutExercise> workoutExercises = new ArrayList<>();
         for (int i = 0; i < exerciseArray.length(); i++) {
             String exerciseDifficulty = exerciseArray.getJSONObject(i).getString("level");

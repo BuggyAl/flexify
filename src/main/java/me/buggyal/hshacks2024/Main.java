@@ -20,6 +20,7 @@ public class Main {
     public static Workout workout;
 
     public static void main(String[] args) {
+        System.out.println("Hello World!");
         try {
             parseExercises();
         } catch (URISyntaxException | IOException e) {
@@ -28,10 +29,8 @@ public class Main {
 
         workout = new Workout(WorkoutDifficulty.BEGINNER, WorkoutType.STRENGTH, WorkoutTarget.ARMS);
         workout.generateWorkout();
-        System.out.println(workout.getWorkout());
 
         App.runApp();
-
     }
 
     public static void parseExercises() throws URISyntaxException, IOException {
@@ -42,7 +41,6 @@ public class Main {
         JSONArray exerciseArray = new JSONArray(jsonContent);
         Main.exerciseArray = exerciseArray;
     }
-
 
 
 }

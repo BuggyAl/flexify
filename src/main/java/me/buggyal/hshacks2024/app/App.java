@@ -35,10 +35,11 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        primaryStage.setScene(updateWindow());
         primaryStage.setTitle("Workout App");
         primaryStage.setWidth(width);
         primaryStage.setHeight(height);
+        primaryStage.getIcons().add(new Image("file:icon.png"));
+        primaryStage.setScene(updateWindow());
         primaryStage.show();
     }
 

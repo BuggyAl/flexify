@@ -13,7 +13,7 @@ public enum RepMode {
     public final int minSets;
     public final int maxSets;
 
-      RepMode(int minReps, int maxReps, int minSets, int maxSets) {
+    RepMode(int minReps, int maxReps, int minSets, int maxSets) {
         this.minReps = minReps;
         this.maxReps = maxReps;
         this.minSets = minSets;

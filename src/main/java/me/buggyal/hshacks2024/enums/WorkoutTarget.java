@@ -10,9 +10,7 @@ public enum WorkoutTarget {
     UPPER_TORSO("Upper Torso", "chest", "lower back", "traps", "middle back", "lats"),
     LEGS("Legs", "hamstrings", "calves", "addctors", "glutes", "quadriceps", "abductors"),
     CORE("Core", "abdominals", "neck"),
-    FULL_BODY("Full Body", "biceps", "triceps", "chest", "lats", "hamstrings", "quadriceps", "abdominals")
-
-    ;
+    FULL_BODY("Full Body", "biceps", "triceps", "chest", "lats", "hamstrings", "quadriceps", "abdominals");
 
     final String name;
     final String[] applicableMuscles;
